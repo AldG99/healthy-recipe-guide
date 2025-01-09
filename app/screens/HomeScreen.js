@@ -22,6 +22,14 @@ const HomeScreen = ({ navigation }) => {
           <Text style={styles.categoryText}>{category.title}</Text>
         </TouchableOpacity>
       ))}
+
+      {/* Botón para la pantalla de configuraciones */}
+      <TouchableOpacity
+        style={styles.settingsButton}
+        onPress={() => navigation.navigate('Settings')}
+      >
+        <Text style={styles.settingsText}>Configuraciones</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -46,6 +54,17 @@ const styles = StyleSheet.create({
   categoryText: {
     fontSize: 18,
     textAlign: 'center',
+  },
+  settingsButton: {
+    backgroundColor: '#dcdcdc',
+    padding: 15,
+    borderRadius: 8,
+    marginTop: 20,
+  },
+  settingsText: {
+    fontSize: 18,
+    textAlign: 'center',
+    color: '#007BFF',
   },
 });
 
