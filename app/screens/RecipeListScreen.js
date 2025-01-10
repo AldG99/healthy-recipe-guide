@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
   FlatList,
   TouchableOpacity,
+  TextInput,
   StyleSheet,
 } from 'react-native';
 import { recipeData } from '../data/recipes';
@@ -11,11 +12,40 @@ import { recipeData } from '../data/recipes';
 const RecipeListScreen = ({ route, navigation }) => {
   const { category } = route.params;
   const recipes = recipeData.filter(recipe => recipe.category === category);
+  const [search, setSearch] = useState('');
+  const [filter, setFilter] = useState({ calories: null, time: null });
+
+  const filteredRecipes = recipes
+    .filter(recipe => recipe.title.toLowerCase().includes(search.toLowerCase()))
+    .filter(recipe =>
+      filter.calories ? recipe.calories <= filter.calories : true
+    )
+    .filter(recipe => (filter.time ? recipe.time <= filter.time : true));
 
   return (
     <View style={styles.container}>
+      <TextInput
+        style={styles.input}
+        placeholder="Buscar receta..."
+        value={search}
+        onChangeText={setSearch}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Máx calorías..."
+        keyboardType="numeric"
+        onChangeText={value =>
+          setFilter({ ...filter, calories: parseInt(value) })
+        }
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Máx tiempo (min)..."
+        keyboardType="numeric"
+        onChangeText={value => setFilter({ ...filter, time: parseInt(value) })}
+      />
       <FlatList
-        data={recipes}
+        data={filteredRecipes}
         keyExtractor={item => item.id.toString()}
         renderItem={({ item }) => (
           <TouchableOpacity
@@ -40,6 +70,13 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
     backgroundColor: '#fff',
+  },
+  input: {
+    borderColor: 'gray',
+    borderWidth: 1,
+    borderRadius: 8,
+    padding: 8,
+    marginBottom: 10,
   },
   recipeCard: {
     backgroundColor: '#f5f5f5',
