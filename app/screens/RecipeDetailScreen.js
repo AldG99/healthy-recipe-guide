@@ -1,12 +1,46 @@
-import React from 'react';
-import { ScrollView, View, Text, StyleSheet } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import {
+  ScrollView,
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const RecipeDetailScreen = ({ route }) => {
   const { recipe } = route.params;
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  useEffect(() => {
+    checkIfFavorite();
+  }, []);
+
+  const checkIfFavorite = async () => {
+    const favorites = JSON.parse(await AsyncStorage.getItem('favorites')) || [];
+    setIsFavorite(favorites.some(fav => fav.id === recipe.id));
+  };
+
+  const toggleFavorite = async () => {
+    const favorites = JSON.parse(await AsyncStorage.getItem('favorites')) || [];
+    if (isFavorite) {
+      const updatedFavorites = favorites.filter(fav => fav.id !== recipe.id);
+      await AsyncStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+    } else {
+      favorites.push(recipe);
+      await AsyncStorage.setItem('favorites', JSON.stringify(favorites));
+    }
+    setIsFavorite(!isFavorite);
+  };
 
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.title}>{recipe.title}</Text>
+      <TouchableOpacity onPress={toggleFavorite}>
+        <Text style={{ color: isFavorite ? 'red' : 'gray', fontSize: 18 }}>
+          {isFavorite ? '❤️ Favorito' : '🤍 Marcar como favorito'}
+        </Text>
+      </TouchableOpacity>
 
       <View style={styles.infoContainer}>
         <Text style={styles.infoText}>Calorías: {recipe.calories}</Text>
