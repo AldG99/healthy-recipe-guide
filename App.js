@@ -1,7 +1,8 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, StackActions } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './app/screens/HomeScreen';
+import SettingsScreen from './app/screens/SettingsScreen';
 import RecipeListScreen from './app/screens/RecipeListScreen';
 import RecipeDetailScreen from './app/screens/RecipeDetailScreen';
 
@@ -16,6 +17,7 @@ export default function App() {
           component={HomeScreen}
           options={{ title: 'Recetas Saludables' }}
         />
+        <Stack.Screen name="Settings" component={SettingsScreen} />
         <Stack.Screen name="RecipeList" component={RecipeListScreen} />
         <Stack.Screen name="RecipeDetail" component={RecipeDetailScreen} />
       </Stack.Navigator>
