@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavigationContainer, StackActions } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './app/screens/HomeScreen';
 import SettingsScreen from './app/screens/SettingsScreen';
@@ -17,9 +17,28 @@ export default function App() {
           component={HomeScreen}
           options={{ title: 'Recetas Saludables' }}
         />
-        <Stack.Screen name="Settings" component={SettingsScreen} />
-        <Stack.Screen name="RecipeList" component={RecipeListScreen} />
-        <Stack.Screen name="RecipeDetail" component={RecipeDetailScreen} />
+        <Stack.Screen
+          name="Settings"
+          component={SettingsScreen}
+          options={{ title: 'Configuraciones' }}
+        />
+        <Stack.Screen
+          name="RecipeList"
+          component={RecipeListScreen}
+          options={({ route }) => {
+            const category = route.params?.category;
+            let title = 'Lista de Recetas';
+            if (category === 'weightloss') title = 'Pérdida de Peso';
+            if (category === 'muscle') title = 'Ganancia Muscular';
+            if (category === 'balanced') title = 'Recetas Equilibradas';
+            return { title };
+          }}
+        />
+        <Stack.Screen
+          name="RecipeDetail"
+          component={RecipeDetailScreen}
+          options={{ title: 'Detalles de la Receta' }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
