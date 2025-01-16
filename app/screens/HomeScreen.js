@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const HomeScreen = ({ navigation }) => {
   const categories = [
@@ -9,7 +10,7 @@ const HomeScreen = ({ navigation }) => {
   ];
 
   return (
-    <View style={styles.container}>
+    <LinearGradient colors={['#FFECB3', '#FFE0B2']} style={styles.container}>
       <Text style={styles.title}>Categorías de Recetas</Text>
       {categories.map(category => (
         <TouchableOpacity
@@ -30,7 +31,7 @@ const HomeScreen = ({ navigation }) => {
       >
         <Text style={styles.settingsText}>Configuraciones</Text>
       </TouchableOpacity>
-    </View>
+    </LinearGradient>
   );
 };
 
@@ -38,33 +39,47 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: '#fff',
   },
   title: {
-    fontSize: 24,
+    fontSize: 26,
     fontWeight: 'bold',
+    color: '#4E342E', // Marrón oscuro claro
     marginBottom: 20,
+    textAlign: 'center',
   },
   categoryButton: {
-    backgroundColor: '#e0e0e0',
+    backgroundColor: 'rgba(255, 204, 128, 0.8)', // Tonalidad suave de naranja
     padding: 15,
-    borderRadius: 8,
-    marginBottom: 10,
+    borderRadius: 10,
+    marginBottom: 15,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 5,
   },
   categoryText: {
     fontSize: 18,
+    color: '#4E342E', // Marrón oscuro claro para contraste
     textAlign: 'center',
+    fontWeight: '500',
   },
   settingsButton: {
-    backgroundColor: '#dcdcdc',
+    backgroundColor: 'rgba(255, 224, 178, 0.9)', // Suave tonalidad de melocotón
     padding: 15,
-    borderRadius: 8,
+    borderRadius: 10,
     marginTop: 20,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 5,
   },
   settingsText: {
     fontSize: 18,
     textAlign: 'center',
-    color: '#007BFF',
+    color: '#4E342E', // Marrón oscuro claro para contraste
+    fontWeight: '500',
   },
 });
 
