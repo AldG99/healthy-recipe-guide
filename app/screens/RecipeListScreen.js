@@ -8,6 +8,7 @@ import {
   StyleSheet,
   Button,
 } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 import { recipeData } from '../data/recipes';
 
 const RecipeListScreen = ({ route, navigation }) => {
@@ -49,12 +50,13 @@ const RecipeListScreen = ({ route, navigation }) => {
   }
 
   return (
-    <View style={styles.container}>
+    <LinearGradient colors={['#FFECB3', '#FFE0B2']} style={styles.container}>
       <TextInput
         style={styles.input}
         placeholder="Buscar receta..."
         value={search}
         onChangeText={handleSearch}
+        placeholderTextColor="#795548"
       />
       <TextInput
         style={styles.input}
@@ -62,6 +64,7 @@ const RecipeListScreen = ({ route, navigation }) => {
         keyboardType="numeric"
         onChangeText={value => handleFilterChange(value, 'calories')}
         value={filter.calories ? filter.calories.toString() : ''}
+        placeholderTextColor="#795548"
       />
       <TextInput
         style={styles.input}
@@ -69,8 +72,11 @@ const RecipeListScreen = ({ route, navigation }) => {
         keyboardType="numeric"
         onChangeText={value => handleFilterChange(value, 'time')}
         value={filter.time ? filter.time.toString() : ''}
+        placeholderTextColor="#795548"
       />
-      <Button title="Limpiar filtros" onPress={clearFilters} />
+      <TouchableOpacity style={styles.clearButton} onPress={clearFilters}>
+        <Text style={styles.clearButtonText}>Limpiar filtros</Text>
+      </TouchableOpacity>
 
       {filteredRecipes.length === 0 ? (
         <Text style={styles.noResults}>No se encontraron recetas.</Text>
@@ -93,7 +99,7 @@ const RecipeListScreen = ({ route, navigation }) => {
           )}
         />
       )}
-    </View>
+    </LinearGradient>
   );
 };
 
@@ -101,39 +107,58 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
-    backgroundColor: '#fff',
   },
   input: {
-    borderColor: 'gray',
+    borderColor: 'rgba(121, 85, 72, 0.5)', // Marrón suave
     borderWidth: 1,
     borderRadius: 8,
     padding: 8,
     marginBottom: 10,
+    backgroundColor: 'rgba(255, 224, 178, 0.8)', // Tonalidad suave de melocotón
+    color: '#4E342E', // Marrón oscuro
+  },
+  clearButton: {
+    backgroundColor: 'rgba(255, 183, 77, 0.9)', // Tonalidad más brillante
+    padding: 10,
+    borderRadius: 8,
+    marginBottom: 15,
+    alignItems: 'center',
+  },
+  clearButtonText: {
+    color: '#4E342E',
+    fontWeight: 'bold',
   },
   recipeCard: {
-    backgroundColor: '#f5f5f5',
+    backgroundColor: 'rgba(255, 224, 178, 0.8)', // Suave tonalidad de melocotón
     padding: 15,
     borderRadius: 8,
     marginBottom: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 5,
   },
   recipeTitle: {
     fontSize: 18,
     fontWeight: 'bold',
+    color: '#4E342E',
   },
   recipeInfo: {
     fontSize: 14,
-    color: '#666',
+    color: '#6D4C41', // Marrón medio
     marginTop: 5,
   },
   loading: {
     textAlign: 'center',
     fontSize: 18,
+    color: '#4E342E',
     marginTop: 20,
   },
   noResults: {
     textAlign: 'center',
     fontSize: 18,
-    color: 'gray',
+    color: '#795548',
     marginTop: 20,
   },
 });
