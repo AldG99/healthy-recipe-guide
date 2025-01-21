@@ -37,7 +37,14 @@ const RecipeDetailScreen = ({ route }) => {
     <ScrollView style={styles.container}>
       <Text style={styles.title}>{recipe.title}</Text>
       <TouchableOpacity onPress={toggleFavorite}>
-        <Text style={{ color: isFavorite ? 'red' : 'gray', fontSize: 18 }}>
+        <Text
+          style={{
+            color: isFavorite
+              ? 'rgba(255, 99, 71, 1)'
+              : 'rgba(169, 169, 169, 1)',
+            fontSize: 18,
+          }}
+        >
           {isFavorite ? '❤️ Favorito' : '🤍 Marcar como favorito'}
         </Text>
       </TouchableOpacity>
@@ -73,24 +80,25 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 15,
-    backgroundColor: '#fff',
+    backgroundColor: 'rgba(255, 253, 234, 1)', // Crema suave para el fondo
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 15,
+    color: 'rgba(93, 75, 58, 1)', // Color oscuro para el texto
   },
   infoContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: '#f5f5f5',
+    backgroundColor: 'rgba(245, 239, 200, 1)', // Beige suave para el contenedor
     padding: 10,
     borderRadius: 8,
     marginBottom: 20,
   },
   infoText: {
     fontSize: 14,
-    color: '#666',
+    color: 'rgba(93, 75, 58, 1)', // Color oscuro para el texto
   },
   section: {
     marginBottom: 20,
@@ -99,11 +107,13 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 10,
+    color: 'rgba(93, 75, 58, 1)', // Color oscuro para el texto
   },
   listItem: {
     fontSize: 16,
     marginBottom: 5,
     lineHeight: 22,
+    color: 'rgba(93, 75, 58, 1)', // Color oscuro para el texto
   },
 });
 
