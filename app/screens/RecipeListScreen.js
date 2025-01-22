@@ -50,13 +50,13 @@ const RecipeListScreen = ({ route, navigation }) => {
   }
 
   return (
-    <LinearGradient colors={['#FFECB3', '#FFE0B2']} style={styles.container}>
+    <LinearGradient colors={['#F6E2B3', '#FAF3D0']} style={styles.container}>
       <TextInput
         style={styles.input}
         placeholder="Buscar receta..."
         value={search}
         onChangeText={handleSearch}
-        placeholderTextColor="#795548"
+        placeholderTextColor="#C8B59B"
       />
       <TextInput
         style={styles.input}
@@ -64,7 +64,7 @@ const RecipeListScreen = ({ route, navigation }) => {
         keyboardType="numeric"
         onChangeText={value => handleFilterChange(value, 'calories')}
         value={filter.calories ? filter.calories.toString() : ''}
-        placeholderTextColor="#795548"
+        placeholderTextColor="#C8B59B"
       />
       <TextInput
         style={styles.input}
@@ -72,7 +72,7 @@ const RecipeListScreen = ({ route, navigation }) => {
         keyboardType="numeric"
         onChangeText={value => handleFilterChange(value, 'time')}
         value={filter.time ? filter.time.toString() : ''}
-        placeholderTextColor="#795548"
+        placeholderTextColor="#C8B59B"
       />
       <TouchableOpacity style={styles.clearButton} onPress={clearFilters}>
         <Text style={styles.clearButtonText}>Limpiar filtros</Text>
@@ -109,31 +109,31 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   input: {
-    borderColor: 'rgba(121, 85, 72, 0.5)', // Marrón suave
+    borderColor: 'rgba(200, 181, 155, 1)', // Beige claro (en rgba)
     borderWidth: 1,
     borderRadius: 8,
     padding: 8,
     marginBottom: 10,
-    backgroundColor: 'rgba(255, 224, 178, 0.8)', // Tonalidad suave de melocotón
-    color: '#4E342E', // Marrón oscuro
+    backgroundColor: 'rgba(249, 243, 230, 1)', // Pastel crema (en rgba)
+    color: 'rgba(106, 78, 61, 1)', // Marrón suave (en rgba)
   },
   clearButton: {
-    backgroundColor: 'rgba(255, 183, 77, 0.9)', // Tonalidad más brillante
+    backgroundColor: 'rgba(244, 208, 111, 1)', // Amarillo pastel suave (en rgba)
     padding: 10,
     borderRadius: 8,
     marginBottom: 15,
     alignItems: 'center',
   },
   clearButtonText: {
-    color: '#4E342E',
+    color: 'rgba(106, 78, 61, 1)', // Marrón suave (en rgba)
     fontWeight: 'bold',
   },
   recipeCard: {
-    backgroundColor: 'rgba(255, 224, 178, 0.8)', // Suave tonalidad de melocotón
+    backgroundColor: 'rgba(249, 243, 230, 1)', // Pastel crema (en rgba)
     padding: 15,
     borderRadius: 8,
     marginBottom: 10,
-    shadowColor: '#000',
+    shadowColor: 'rgba(0, 0, 0, 0.2)', // Sombra suave (en rgba)
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 4,
@@ -142,23 +142,23 @@ const styles = StyleSheet.create({
   recipeTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#4E342E',
+    color: 'rgba(106, 78, 61, 1)', // Marrón suave (en rgba)
   },
   recipeInfo: {
     fontSize: 14,
-    color: '#6D4C41', // Marrón medio
+    color: 'rgba(158, 124, 85, 1)', // Marrón claro (en rgba)
     marginTop: 5,
   },
   loading: {
     textAlign: 'center',
     fontSize: 18,
-    color: '#4E342E',
+    color: 'rgba(106, 78, 61, 1)', // Marrón suave (en rgba)
     marginTop: 20,
   },
   noResults: {
     textAlign: 'center',
     fontSize: 18,
-    color: '#795548',
+    color: 'rgba(200, 181, 155, 1)', // Beige suave (en rgba)
     marginTop: 20,
   },
 });
